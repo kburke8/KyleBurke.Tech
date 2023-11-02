@@ -3,7 +3,7 @@
     <PropertyGroup>
         <RootNamespace>KyleBurke.Tech.Application.FunctionalTests</RootNamespace>
         <AssemblyName>KyleBurke.Tech.Application.FunctionalTests</AssemblyName>
-        <BaseOutputPath>bin\test</BaseOutputPath>
+        <BaseOutputPath>bin</BaseOutputPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,8 +14,9 @@
       <Content Include="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       </Content>
+
     </ItemGroup>
 
     <ItemGroup>
