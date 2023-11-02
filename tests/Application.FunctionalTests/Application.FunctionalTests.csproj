@@ -3,6 +3,7 @@
     <PropertyGroup>
         <RootNamespace>KyleBurke.Tech.Application.FunctionalTests</RootNamespace>
         <AssemblyName>KyleBurke.Tech.Application.FunctionalTests</AssemblyName>
+        <BaseOutputPath>bin\test</BaseOutputPath>
     </PropertyGroup>
 
     <ItemGroup>
