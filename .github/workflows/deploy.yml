@@ -35,7 +35,7 @@ jobs:
        with:
          deploymentName: ${{ github.run_number }}
          resourceGroupName: ${{ vars.AZURE_RESOURCE_GROUP_NAME }}
-         template: ./.azure/bicep/main.bicep
+         template: ./.azure/bicep/simple.bicep
          parameters: >
            environmentName=${{ inputs.environmentName }}
            sqlAdministratorUsername=${{ vars.AZURE_SQL_ADMINISTRATOR_USERNAME }}
@@ -49,7 +49,7 @@ jobs:
        with:
          failOnStdErr: false
          resourceGroupName: ${{ vars.AZURE_RESOURCE_GROUP_NAME }}
-         template: ./.azure/bicep/main.bicep
+         template: ./.azure/bicep/simple.bicep
          parameters: >
            environmentName=${{ inputs.environmentName }}
            sqlAdministratorUsername=${{ vars.AZURE_SQL_ADMINISTRATOR_USERNAME }}
@@ -87,18 +87,18 @@ jobs:
         failOnStdErr: false
         deploymentName: ${{ github.run_number }}
         resourceGroupName: ${{ vars.AZURE_RESOURCE_GROUP_NAME }}
-        template: ./.azure/bicep/main.bicep
+        template: ./.azure/bicep/simple.bicep
         parameters: >
            environmentName=${{ inputs.environmentName }}
            sqlAdministratorUsername=${{ vars.AZURE_SQL_ADMINISTRATOR_USERNAME }}
            sqlAdministratorPassword=${{ secrets.AZURE_SQL_ADMINISTRATOR_PASSWORD }}
            projectName=${{ vars.PROJECT_NAME }}
 
-    - name: Initialise database
-      run: |
-        unzip -o ./efbundle/efbundle.zip
-        echo '{ "ConnectionStrings": { "DefaultConnection": "" } }' > appsettings.json
-        ./efbundle.exe --connection "Server=${{ steps.deploy.outputs.sqlServerFullyQualifiedDomainName }};Initial Catalog=${{ steps.deploy.outputs.sqlDatabaseName }};Persist Security Info=False;User ID=${{ vars.AZURE_SQL_ADMINISTRATOR_USERNAME }};Password=${{ secrets.AZURE_SQL_ADMINISTRATOR_PASSWORD }};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" --verbose
+    # - name: Initialise database
+    #   run: |
+    #     unzip -o ./efbundle/efbundle.zip
+    #     echo '{ "ConnectionStrings": { "DefaultConnection": "" } }' > appsettings.json
+    #     ./efbundle.exe --connection "Server=${{ steps.deploy.outputs.sqlServerFullyQualifiedDomainName }};Initial Catalog=${{ steps.deploy.outputs.sqlDatabaseName }};Persist Security Info=False;User ID=${{ vars.AZURE_SQL_ADMINISTRATOR_USERNAME }};Password=${{ secrets.AZURE_SQL_ADMINISTRATOR_PASSWORD }};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" --verbose
 
     - uses: azure/webapps-deploy@v2
       name: Deploy website
